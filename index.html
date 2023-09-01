@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortear Nomes</title>
+    <style>
+    *{
+      border: 0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+     }
+     @font-face {
+        font-family: 'ANTON';
+        src: url(fonts/Anton-Regular.ttf);
+     }
+     @font-face {
+        font-family: 'OPEN';
+        src: url(fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+     }
+     h2{
+        font:600 40px'ANTON';
+        margin-left: 110px;
+        color: #2d2938;
+        
+     }
+     p, label{
+        font: 600 25px 'OPEN';
+     }
+     .background{
+        background-color: #2d2938;
+        height: 400px;
+     }
+     .subcaixa{
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+     }
+     .caixa{
+        background-color: white;
+        width: 500px;
+        height: 300px;
+        padding: 10px;
+     }
+     textarea{
+        margin-top: 20px;
+        width: 480px;
+        height: 30px;
+        outline: none;
+     }
+     .label{
+        background-color:#2d2938;
+        color: white;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+     }
+     .botao{
+        display: flex;
+        justify-content: center;
+     }
+     button{
+        width: 630px;
+        height: 40px;
+        background-color: #939292;
+        color: white;
+        font: 600 23px 'OPEN';
+     }
+     .resultado{
+        margin-top: 20px;
+     }
+    </style>
+</head>
+<body>
+    <div class="background">
+    <main class="app">
+        <section class="sorteio">
+            <div class="container">
+                <div class="subcaixa">
+                <div class="caixa">
+                <h2>SORTEAR NOMES</h2>
+                <div class="linha"></div>
+                <div class="formulario container">
+                    <div class="label">
+                    <label for="entradaNome">Adicione os Nomes para o Sorteio!</label>
+                </div>
+                    <textarea  id="entradaNomes" placeholder="Adicione os nome separados por virgula. ex(Juliana,Rebeca)"></textarea>
+                    <div class="botao">
+                    <button class="sortear">Sortear</button>
+                 </div>
+                </div>
+                <div class="resultado">
+                    <p>Resultado: </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+</div>
+    <script>
+        //Variavéis
+        const btnSortear = document.querySelector(".sortear");
+        const textarea = document.querySelector("textarea");
+        const tagResultado = document.querySelector(".resultado p");
+        const popUpResultado = document.querySelector(".resultado");
+
+        function pegarDadosFormulario(){
+            const valorCampo = textarea.value;//pega todos os valores do textarea
+            const listaNomes = valorCampo.split(",");//separa pela vírgula
+            const tamanhoArray = listaNomes.length;//contar quantos nomes tem 
+            const posicaoNome = gerarNomeAleatorio(tamanhoArray);//escolhe uma posição aleatoria
+            const nome = listaNomes[posicaoNome];//guarda o nome sorteado
+            mostrarResultado(nome);//mostra o resultado
+
+            textarea.value = ""//limpa o textarea
+
+        }
+        btnSortear.addEventListener("click", pegarDadosFormulario)
+
+        function gerarNomeAleatorio(tamanhoArray){
+            //RETORNA O NOME
+            return Math.floor(Math.random()*(tamanhoArray = 0) + 0)
+        }
+        function mostrarResultado(nome){
+            tagResultado.innerHTML = `Resultado: ${nome}`
+            popUpResultado.classList.add("Resultado")
+        }
+    </script>
+    
+</body>
+</html>
